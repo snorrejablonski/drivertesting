@@ -1,5 +1,11 @@
 package driver
 
+//inspirasjon fra mortenfyhn, fiks matrix-imputs i funksjonene slik at index'ene stemmer.
+
+import (
+	"fmt"
+)
+
 const N_FLOORS = 4
 const N_BUTTONS = 3
 
@@ -96,11 +102,12 @@ func Elev_set_stop_lamp(value int) {
 	}
 }
 
-func Elev_get_button_signal(button int, floor int) int {
+func Elev_get_button_signal(button int, floor int) bool {
+	fmt.Printf("button %i, floor %i\n", button, floor)
 	if Io_read_bit(button_channel_matrix[floor][button]) != 0 {
-		return 1
+		return true
 	} else {
-		return 0
+		return false
 	}
 }
 

@@ -1,25 +1,27 @@
 package main
 
 import (
-	def "driver" //Hvorfor må jeg ha def forran?!
+	"../driver"
 	"fmt"
-	"time"
+	//"time"
 )
 
 func main() {
 	fisk := 1
-	if def.Elev_init() == false {
+	if driver.Elev_init() == false {
 		fmt.Println("Noe fucket skjedde")
-	} else if def.Elev_init() == true {
+	} else if driver.Elev_init() == true {
 		fmt.Println("Initialize successful")
 	}
 
-	//def.Elev_set_button_lamp(2, 1, 1)
-
+	//driver.Elev_set_button_lamp(2, 1, 1)
+	driver.Elev_set_motor_direction(-1)
 	for fisk == 1 {
-		def.Elev_set_motor_direction(1)
-		if def.Elev_get_button_signal(def.BUTTON_COMMAND1, 3) {
-
+		if driver.Elev_get_button_signal(driver.BUTTON_COMMAND1, 2) {
+			driver.Elev_set_motor_direction(-1)
+			if driver.Elev_get_floor_sensor_signal() == 2 {
+				driver.Elev_set_motor_direction(0)
+			}
 		}
 	}
 }
