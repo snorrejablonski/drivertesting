@@ -2,28 +2,15 @@ package main
 
 import (
 	"../driver"
-	"fmt"
+	"../config"
+	//"fmt"
 	//"time"
 )
 
-func main() {
-	fisk := 1
-	if driver.Elev_init() == false {
-		fmt.Println("Noe fucket skjedde")
-	} else if driver.Elev_init() == true {
-		fmt.Println("Initialize successful")
-	}
+func main() {	
+	driver.Elev_init()
 
-	//driver.Elev_set_button_lamp(2, 1, 1)
-	driver.Elev_set_motor_direction(-1)
-	for fisk == 1 {
-		if driver.Elev_get_button_signal(driver.BUTTON_COMMAND1, 2) {
-			driver.Elev_set_motor_direction(-1)
-			if driver.Elev_get_floor_sensor_signal() == 2 {
-				driver.Elev_set_motor_direction(0)
-			}
-		}
-	}
+	driver.Elev_set_button_lamp(config.BTN_COMMAND, 0,0)
 }
 
 //  FloorChan := make(chan int,1)
